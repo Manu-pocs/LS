@@ -1,0 +1,10 @@
+**/.gradle
+**/build
+**/target
+**/.blade
+**/.mvn
+**/.project
+**/.settings
+**/.vscode
+**/.classpath
+**/.sass-cache

@@ -1,0 +1,65 @@
+/*
+ *  Apply Liferay Gradle plugin which will 
+ *  - Instruct Bnd to use portalble contracts instead of package dependencies, when possible
+ *  - Add a Bnd plugin to analyze the JSPs
+ *  - Add a Bnd plugin to analyze i18n resource bundles
+ *  - Add a Bnd plugin to analyze SASS/CSS files
+ */
+apply plugin: "com.liferay.plugin"
+
+/*
+ * Configure plugins 
+ */
+buildscript {
+	ext {
+		bndVersion = '4.2.0'
+		liferayGradlePluginVersion = '4.2.0'
+		portletApiVersion = '3.0.0'
+		serviceComponentAnnotationsVersion = '1.3.0'
+	}
+
+	/*
+	 * Plugin artifacts
+	 */
+	dependencies {
+		classpath "biz.aQute.bnd:biz.aQute.bnd:${bndVersion}"
+		classpath "biz.aQute.bnd:biz.aQute.bnd.gradle:${bndVersion}"
+		classpath "biz.aQute.bnd:biz.aQute.bndlib:${bndVersion}"
+		classpath(group: "com.liferay", name: "com.liferay.gradle.plugins", version: "${liferayGradlePluginVersion}") {
+			exclude group: "biz.aQute.bnd", module: "biz.aQute.bnd"
+			exclude group: "biz.aQute.bnd", module: "biz.aQute.bnd.gradle"
+			exclude group: "biz.aQute.bnd", module: "biz.aQute.bndlib"
+		}
+	}
+
+	/*
+	 * Repositories for plugins
+	 */
+	repositories {
+		maven {
+			url "https://repository-cdn.liferay.com/nexus/content/groups/public"
+		}
+	}
+}
+
+/*
+ * Repositories for project depenedencies
+ */
+repositories {
+	maven {
+		url "https://repository-cdn.liferay.com/nexus/content/groups/public"
+	}
+}
+
+/*
+ * Project depenedencies
+ */
+dependencies {
+	compileOnly "javax.portlet:portlet-api:${portletApiVersion}"
+	compileOnly "org.osgi:org.osgi.service.component.annotations:${serviceComponentAnnotationsVersion}"
+}
+
+/*
+ * Set the jar name to ensure it's the same accross all builds
+ */
+jar.baseName = 'com.liferay.code.samples.portal.modules.applications.portlets.generic-ds-plain'
