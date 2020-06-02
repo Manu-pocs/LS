@@ -6,6 +6,18 @@ pipeline {
 
   }
   stages {
+    stage('Static Code Analysis') {
+      steps {
+        echo 'Using SonarQube'
+      }
+    }
+
+    stage('Unit Tests') {
+      steps {
+        echo 'Using JUnit'
+      }
+    }
+
     stage('Build') {
       steps {
         tool 'gradle-5.4.1-all'
