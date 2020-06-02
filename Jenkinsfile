@@ -15,14 +15,5 @@ pipeline {
       }
     }
 
-    stage('Refresh') {
-      steps {
-        writeFile(file: '.refresh', text: 'refresh')
-      }
-    }
-
-  }
-  environment {
-    JENKINS_NODE_COOKIE = 'dontKillMe'
   }
 }
