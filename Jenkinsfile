@@ -8,15 +8,17 @@ pipeline {
   stages {
     stage('Build') {
       steps {
-        tool 'gradle-4.6'
+        tool 'gradle-5.4.1-all'
         tool 'JDK8'
-        bat 'gradlew.bat clean assemble'
+        bat 'C:\\Users\\Mitesh\\.gradle\\wrapper\\dists\\gradle-4.6-all\\bcst21l2brirad8k2ben1letg\\gradle-4.6\\bin\\gradle.bat -b portal\\7.2\\java8\\workspace-gradle\\build.gradle clean assemble'
+        bat 'C:\\Users\\Mitesh\\.gradle\\wrapper\\dists\\gradle-4.6-all\\bcst21l2brirad8k2ben1letg\\gradle-4.6\\bin\\gradle.bat tasks'
         archiveArtifacts '**/*.jar'
       }
     }
 
   }
   environment {
-    GRADLE_HOME = 'C:\\Users\\Mitesh\\.gradle\\wrapper\\dists\\gradle-4.6-all\\bcst21l2brirad8k2ben1letg\\gradle-4.6'
+    ANDROID_HOME = 'C:\\Program Files (x86)\\Android\\android-sdk'
+    JAVA_HOME = 'C:\\Program Files\\Java\\jdk1.8.0_111'
   }
 }
