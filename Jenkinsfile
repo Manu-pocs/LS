@@ -8,7 +8,8 @@ pipeline {
   stages {
     stage('Static Code Analysis') {
       steps {
-        echo 'Using SonarQube'
+        bat 'echo "SCA"'
+        bat 'F:\\1.DevOps\\2020\\sonar-scanner-3.2.0.1227-windows\\bin\\sonar-scanner.bat -Dsonar.host.url=http://localhost:9000/ -Dsonar.login=cba67104bb4f4ef081b55e7ef43168a40b49d6b9 -Dsonar.projectVersion=1.0 -Dsonar.projectKey=liferay-sample -Dsonar.sources=portal\\7.2\\java8\\code\\modules\\applications\\portlets -Dsonar.java.binaries=. '
       }
     }
 
